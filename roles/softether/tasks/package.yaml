@@ -1,0 +1,13 @@
+---
+- name: "install dependences"
+  apt:
+    name:
+    - "cmake"
+    - "gcc"
+    - "g++"
+    - "make"
+    - "libncurses5-dev"
+    - "libssl-dev"
+    - "libsodium-dev"
+    - "libreadline-dev"
+    - "zlib1g-dev"

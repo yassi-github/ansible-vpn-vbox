@@ -1,0 +1,5 @@
+[user]
+        name = {{ gitconfig.username }}
+        email = {{ gitconfig.usermail }}
+[core]
+        editor = {{ gitconfig.editor }}

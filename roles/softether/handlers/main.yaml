@@ -1,0 +1,4 @@
+---
+- name: "Message!"
+  debug:
+    msg: "{{ message.split('\n') }}"

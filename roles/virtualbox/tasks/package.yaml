@@ -1,0 +1,31 @@
+---
+- name: "install dependences"
+  apt:
+    name:
+    - "curl"
+    - "gnupg"
+
+- name: "add virtualbox repository key"
+  script: shellscript/apt-key-add.sh {{ virtualbox_repository_key_uri }}
+
+- name: "add extension .gpg because it's not a gpg key({{ virtualbox_repository_key_extention_type }} key)"
+  shell: "mv {{ repository_keys_path }}/{{ virtualbox_repository_key_name }} {{ repository_keys_path }}/{{ virtualbox_repository_key_name }}.gpg"
+  when: virtualbox_repository_key_extention_type != 'gpg'
+
+- name: "add repository source file"
+  template:
+    src: vbox.source.j2
+    dest: "{{ repository_sources_path }}/vbox.sources"
+
+- name: "add repository preference file"
+  template:
+    src: vbox.pref.j2
+    dest: "{{ repository_preferences_path }}/vbox.pref"
+
+- name: "update repository cache"
+  apt:
+    update_cache: yes
+
+- name: "install package"
+  apt:
+    name: "virtualbox-{{ virtualbox_package_version }}"

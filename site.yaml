@@ -1,0 +1,13 @@
+---
+- hosts: master
+  become: yes
+  become_method: sudo
+  roles:
+    - role: git
+    - role: softether
+
+- hosts: slave
+  become: yes
+  become_method: sudo
+  roles:
+    - role: virtualbox

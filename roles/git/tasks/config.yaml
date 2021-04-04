@@ -1,0 +1,5 @@
+---
+- name: "register git ~/.gitconfig"
+  template:
+    src: ./gitconfig
+    dest: /home/{{ main_unix_username }}/.gitconfig

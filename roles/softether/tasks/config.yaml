@@ -1,0 +1,48 @@
+---
+- name: "change name for stable"
+  set_fact:
+    softether_maindir: "{{ softether_maindir }}_Stable"
+    softether_github_repository_address: "{{ softether_github_repository_address_stable }}"
+  when: softether_vpnserver_is_stable == True
+
+- name: "mkdir for working directory"
+  file:
+    path: "{{ softether_maindir }}"
+    state: "directory"
+
+- name: "git clone"
+  git:
+    repo: "{{ softether_github_repository_address }}"
+    dest: "{{ softether_maindir }}"
+    update: no
+
+- name: "check already maked"
+  stat:
+    path: "{{ softether_maindir }}/bin"
+  register: "softether_install_checkdir"
+
+- name: "create first installing flag"
+  set_fact:
+    is_softether_installed: no
+  when: softether_install_checkdir.stat.exists == False
+
+- name: "delete make option for Stable"
+  set_fact:
+    softether_UN_stable_make_option: ""
+  when: softether_vpnserver_is_stable == True
+
+- name: "./configure"
+  shell: "cd {{ softether_maindir }} && ./configure"
+  when: is_softether_installed == False
+
+- name: "make"
+  shell: 'cd {{ softether_maindir }} && make {{ softether_UN_stable_make_option }}'
+  when: is_softether_installed == False
+
+- name: "make install"
+  shell: 'cd {{ softether_maindir }} && make {{ softether_UN_stable_make_option }} install'
+  when: is_softether_installed == False
+
+- name: "reserve message"
+  command: echo "reserved message!"
+  notify: "Message!"
