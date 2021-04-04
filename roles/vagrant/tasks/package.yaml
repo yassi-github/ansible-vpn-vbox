@@ -1,0 +1,32 @@
+---
+- name: "install dependences"
+  apt:
+    name:
+    - "curl"
+    - "gnupg"
+    update_cache: yes
+
+- name: "add hashicorp repository key"
+  script: shellscript/apt-key-add.sh {{ hashicorp_repository_key_uri }} {{ hashicorp_repository_key_name }}
+
+- name: "add extension .gpg because it's not a gpg key"
+  shell: "mv {{ repository_keys_path }}/{{ hashicorp_repository_key_name }} {{ repository_keys_path }}/{{ hashicorp_repository_key_name }}.gpg"
+  when: hashicorp_repository_key_extention_type != 'gpg'
+
+- name: "add repository source file"
+  template:
+    src: hashicorp.source.j2
+    dest: "{{ repository_sources_path }}/hashicorp.sources"
+
+- name: "add repository preference file"
+  template:
+    src: hashicorp.pref.j2
+    dest: "{{ repository_preferences_path }}/hashicorp.pref"
+
+- name: "update repository cache"
+  apt:
+    update_cache: yes
+
+- name: "install package"
+  apt:
+    name: "vagrant"

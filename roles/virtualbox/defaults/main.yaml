@@ -3,7 +3,7 @@ virtualbox_package_version: "6.1"
 
 virtualbox_repository_key_extention_type: "asc"
 virtualbox_repository_key_name: "oracle_vbox_2016.{{ virtualbox_repository_key_extention_type }}"
-virtualbox_repository_key_uri: "https://www.virtualbox.org/download/{{ virtualbox_repository_key_name }}"
+virtualbox_repository_key_uri: "https://www.virtualbox.org/download/oracle_vbox_2016.asc"
 virtualbox_repository_uri: "https://download.virtualbox.org/virtualbox/debian"
 
 pin_priority: 100
