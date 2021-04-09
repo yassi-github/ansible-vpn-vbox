@@ -7,4 +7,6 @@ else
     keyName=`echo $keyURI | awk -F'/' '{print $(NF)}'`
 fi
 
+trap 'wget -O- $keyURI | gpg --dearmor > /usr/share/keyrings/$keyName' ERR
+
 curl $keyURI | gpg --dearmor > /usr/share/keyrings/$keyName
