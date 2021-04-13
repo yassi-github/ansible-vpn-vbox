@@ -26,5 +26,5 @@ If you won't use JSON-RPC API, modify `vpn_server.config`(where?):\n
 softether_UN_stable_make_option: "-C build"
 is_softether_installed: yes
 
-softether_github_repository_address_stable: "git@github.com:SoftEtherVPN/SoftEtherVPN_Stable.git"
-softether_github_repository_address: "git@github.com:SoftEtherVPN/SoftEtherVPN.git"
+softether_github_repository_address_stable: "https://github.com/SoftEtherVPN/SoftEtherVPN_Stable.git"
+softether_github_repository_address: "https://github.com/SoftEtherVPN/SoftEtherVPN.git"
