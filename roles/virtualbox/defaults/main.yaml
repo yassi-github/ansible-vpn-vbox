@@ -7,3 +7,12 @@ virtualbox_repository_key_uri: "https://www.virtualbox.org/download/oracle_vbox_
 virtualbox_repository_uri: "https://download.virtualbox.org/virtualbox/debian"
 
 pin_priority: 100
+
+virtualbox_message: "
+Before use Virtualbox or Vagrant,\n
+try this:\n
+\n
+$ VboxManage list vms\n
+\n
+maybe needs more configure...\n
+"

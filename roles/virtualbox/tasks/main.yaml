@@ -1,3 +1,7 @@
 ---
 - name: package.yaml
   include_tasks: package.yaml
+
+- name: "reserve message"
+  command: echo "reserved message!"
+  notify: "VBox Message!"

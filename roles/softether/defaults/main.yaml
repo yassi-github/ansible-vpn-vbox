@@ -20,6 +20,8 @@ For Now, try connect from client.\n
 \n
 If you won't use JSON-RPC API, modify `vpn_server.config`(where?):\n
 `bool DisableJsonRpcWebApi` to `true`\n
+\n
+it could be done by softether-client(gui). else?\n
 "
 
 # don't modify it.

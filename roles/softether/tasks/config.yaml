@@ -31,6 +31,10 @@
     softether_UN_stable_make_option: ""
   when: softether_vpnserver_is_stable == True
 
+- name: "git submodule init"
+  shell: "cd {{ softether_maindir }} && git submodule init && git submodule update"
+  when: is_softether_installed == False and softether_vpnserver_is_stable == False
+
 - name: "./configure"
   shell: "cd {{ softether_maindir }} && ./configure"
   when: is_softether_installed == False

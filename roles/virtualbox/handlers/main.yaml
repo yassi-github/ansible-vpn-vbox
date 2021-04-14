@@ -1,0 +1,4 @@
+---
+- name: "VBox Message!"
+  debug:
+    msg: "{{ virtualbox_message.split('\n') }}"
