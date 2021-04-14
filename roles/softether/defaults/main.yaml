@@ -5,8 +5,8 @@ message: "
 Install Completed!\n
 Then, Let's start vpnserver!\n
 \n
-$ vpnserver start\n
-$ vpncmd\n
+# vpnserver start\n
+# vpncmd\n
 try below to test all ok:\n
 > 3\n
 > check\n
