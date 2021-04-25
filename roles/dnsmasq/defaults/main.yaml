@@ -1,0 +1,7 @@
+---
+localdomain: myhome.localnet
+
+dnsmasq_msg: "
+To regist DomainName,\n
+white down to /etc/hosts\n
+"

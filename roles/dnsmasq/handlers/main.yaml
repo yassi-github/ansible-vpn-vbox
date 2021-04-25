@@ -1,0 +1,9 @@
+---
+- name: "restart dnsmasq"
+  systemd:
+    name: dnsmasq.service
+    state: restarted
+
+- name: "dnsmasq_message"
+  debug:
+    msg: "{{ dnsmasq_msg.split('\n') }}"

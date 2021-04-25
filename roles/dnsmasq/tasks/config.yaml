@@ -1,0 +1,22 @@
+---
+- name: "template dnsmasq.conf"
+  template:
+    src: dnsmasq.conf.j2
+    dest: /etc/dnsmasq.conf
+    backup: yes
+
+- name: "re-link resolv.conf"
+  file:
+    state: link
+    src: /run/systemd/resolve/resolv.conf
+    dest: /etc/resolv.conf
+
+- name: "stop systemd-resolved"
+  systemd:
+    name: systemd-resolved.service
+    state: stopped
+    enabled: no
+
+- name: "add comment to /etc/hosts"
+  shell: echo "# Add ip and hostname below!" >> /etc/hosts
+  notify: dnsmasq_message
