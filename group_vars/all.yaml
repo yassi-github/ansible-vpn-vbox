@@ -1,5 +1,5 @@
 ---
-# create vault vars: $ ansible-vault encrypt_string
+# create vault vars, run `$ ansible-vault encrypt_string`
 ansible_user: ys
 ansible_password: !vault |
           $ANSIBLE_VAULT;1.1;AES256

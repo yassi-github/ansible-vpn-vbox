@@ -1,28 +1,27 @@
 ---
 softether_maindir: "/usr/local/SoftEtherVPN"
 
-message: "
-Install Completed!\n
-Then, Let's start vpnserver!\n
-\n
-# vpnserver start\n
-# vpncmd\n
-try below to test all ok:\n
-> 3\n
-> check\n
-\n
-setting server:\n
-> 1\n
-> serverp\n
-(set server password)\n
-\n
-For Now, try connect from client.\n
-\n
-If you won't use JSON-RPC API, modify `vpn_server.config`(where?):\n
-`bool DisableJsonRpcWebApi` to `true`\n
-\n
-it could be done by softether-client(gui). else?\n
-"
+message: |
+  Install Completed!
+  Then, Let's start vpnserver!
+
+  # vpnserver start
+  # vpncmd
+  try below to test all ok:
+  > 3
+  > check
+
+  setting server:
+  > 1
+  > serverp
+  (set server password)
+
+  For Now, try connect from client.
+
+  If you won't use JSON-RPC API, modify `vpn_server.config`(where?):
+  `bool DisableJsonRpcWebApi` to `true`
+
+  it could be done by softether-client(gui). else?
 
 # don't modify it.
 softether_UN_stable_make_option: "-C build"
