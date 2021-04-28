@@ -17,6 +17,14 @@
     state: stopped
     enabled: no
 
-- name: "add comment to /etc/hosts"
-  shell: echo "# Add ip and hostname below!" >> /etc/hosts
+- name: "add domain names to /etc/hosts"
+  blockinfile:
+    path: /etc/hosts
+    insertbefore: "# The following lines are desirable for IPv6 capable hosts"
+    marker: "### {mark} Domain names (used by dnsmasq) ###"
+    block: "{{ ip_dn_list }}"
+    backup: yes
+
+- name: "notify message"
+  shell: ":"
   notify: dnsmasq_message

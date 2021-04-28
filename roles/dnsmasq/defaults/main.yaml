@@ -1,7 +1,13 @@
 ---
 localdomain: myhome.localnet
 
-dnsmasq_msg: "
-To regist DomainName,\n
-white down to /etc/hosts\n
-"
+dnsmasq_msg: |
+  To regist DomainName,
+  white down to /etc/hosts
+
+ip_dn_list: |
+  192.168.12.50 tashkent.{{ localdomain }}
+  192.168.12.60 gangut.{{ localdomain }}
+  192.168.12.160 vagrant-lamp.{{ localdomain }}
+  192.168.12.161 vagrant-java.{{ localdomain }}
+  192.168.12.170 vagrant-test.{{ localdomain }}

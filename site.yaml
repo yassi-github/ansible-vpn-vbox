@@ -5,6 +5,7 @@
   roles:
     - role: git
     - role: softether
+    - role: dnsmasq
 
 - hosts: slave
   become: yes
