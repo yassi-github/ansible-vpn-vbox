@@ -5,6 +5,12 @@
     dest: /etc/dnsmasq.conf
     backup: yes
 
+- name: "template resolv-dnsmasq.conf"
+  template:
+    src: resolv-dnsmasq.conf.j2
+    dest: "{{ dnsmasq_resolvconf_path }}"
+    backup: yes
+
 - name: "re-link resolv.conf"
   file:
     state: link
