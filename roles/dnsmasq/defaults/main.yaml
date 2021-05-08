@@ -12,4 +12,10 @@ ip_dn_list: |
   192.168.12.161 vagrant-java.{{ localdomain }}
   192.168.12.170 vagrant-test.{{ localdomain }}
 
+  10.168.3.80 boulez0.lxd
+  10.168.3.81 boulez1.lxd
+  10.168.3.82 chausson1.lxd
+  10.168.3.83 messiaen.lxd
+  10.168.3.84 poulenc.lxd
+
 dnsmasq_resolvconf_path: "/etc/resolv-dnsmasq.conf"
