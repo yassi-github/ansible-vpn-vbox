@@ -1,0 +1,3 @@
+---
+lxd_prof_dir: "/usr/local/lxd"
+crontab_dir: "/var/spool/cron/crontabs"

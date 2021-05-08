@@ -1,0 +1,9 @@
+---
+- name: "install snap"
+  apt:
+    name: snap
+
+- name: "install lxd"
+  snap:
+    name: lxd
+    # channel: 4.0/stable

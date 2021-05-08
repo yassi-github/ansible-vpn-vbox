@@ -1,0 +1,7 @@
+ansible_user: vagrant
+ansible_password: vagrant
+ansible_become_pass: vagrant
+
+main_username: vagrant
+# 有線LAN
+lxd_host_eth_name: "enp1s0"

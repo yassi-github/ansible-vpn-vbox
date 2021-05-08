@@ -1,0 +1,1 @@
+@reboot lxc list &>/dev/null

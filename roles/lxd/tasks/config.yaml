@@ -1,0 +1,41 @@
+---
+- name: init
+  shell: lxd init --auto
+
+# promiscast on にしなくても使えた
+# - name: promisc on
+
+- name: "sysctl ipv4 forward on"
+  copy:
+    src: sysctl.conf
+    dest: /etc/sysctl.conf
+    backup: yes
+
+- name: "mkdir {{ lxd_prof_dir }}"
+  file:
+    path: "{{ lxd_prof_dir }}"
+    state: directory
+
+- name: "locate macvlan profile"
+  template:
+    src: mvlprof.profile.j2
+    dest: "{{ lxd_prof_dir }}/mvlprof.profile"
+
+- name: "import macvlanprofile"
+  shell: lxc profile create mvlprof && cat {{ lxd_prof_dir }}/mvlprof.profile | lxc profile edit mvlprof
+
+- name: "check lxd is running per boot by cron"
+  copy:
+    src: mycrontabs
+    dest: "{{ crontab_dir }}/{{ main_username }}"
+    backup: yes
+
+- name: "locate lxc build scripts"
+  copy:
+    src: lxcs
+    dest: "{{ lxd_prof_dir }}"
+
+- name: "locate lxc memo"
+  copy:
+    src: dirty_memo.txt
+    dest: "{{ lxd_prof_dir }}/dirty_memo.txt"

@@ -1,0 +1,114 @@
+ lxc network show lxdbr0
+ lxc network list
+ lxc profile show default
+ lxc profile list
+ lxc config device show default
+ lxc config device show f1
+ lxc config device list f1
+ lxc config show f1 --expanded
+
+lxdbr0: 10.91.103.1
+
+f2br0: 10.51.216.1
+
+/etc/sysconfigのforwardidいらん？一応onにしとく。
+
+# 新規作成
+lxc network create f2br0
+# defaultを流用する
+lxc profile copy default f2net
+# 書き換え lxdbr0 -> f2net
+lxc profile edit f2net
+# 既存のコンテナのプロファイルを切り替えて、所属するネットワークを変更する場合
+lxc profile assign f2 f2net
+# lxdbr0を利用してコンテナ内のeth1としてネットワークデバイスを作成
+lxc network attach lxdbr0 f2 eth1
+# 固定IPを設定(lxdbr0のsubnet範囲内)
+lxc config device set f2 eth1 ipv4.address 10.91.103.50
+# コンテナに反映
+lxc exec f2 dhclient eth1
+
+// dn-resolve using systemd-resolve(うまくいかない？)
+resolvectl dns lxdbr0 1.2.3.4(nameserver address)
+resolvectl domain lxdbr0 '~lxd'(~ は、指定nameserverは、この lxd ドメインだけを探すために使う。という設定らしい。)
+- この systemd-resolved の設定はブリッジが存在する間のみ存続します
+    - LXD が再起動するたびにこのコマンドを繰り返し実行する必要があります
+    - dns.mode が none でないときにしか機能しない
+    - resolved.conf の DNSSEC オプションを無効にする必要があるかも
+
+vbox
+ホストー＞コンテナ
+f2br0のeth0: o
+lxdbr0のeth1: x? 帰ってはくる
+
+ローカルLANー＞コンテナ
+f2br0のeth0: x 通らない
+lxdbr0のeth1: x? Packet filtered
+
+実機
+ホストー＞コンテナ
+lxdbr0: o
+
+コンテナー＞ホスト
+lxdbr0: o
+
+ローカルLANー＞コンテナ
+lxdbr0: x
+
+macvlanを使う
+
+有線物理parentを使って通信を行う。MACアドレスは架空のものが与えられる。外部と通信可能。
+無線は、複数のMAC切り替え？に対応してないのでだめそう。
+アドレスリースが、ブリッジ元のnIFにipを振っているものからなので、その設定でリース時間クソ長やらsubnetrangeせませまやらだと、コンテナ大量生産しまくってたらアドレス振られなくなる。
+macvlanでなくてブリッジだと、lxdbr0などのrangeで1hleaseのホストlxdのdnsmasqが管理するので、リース開放が簡単。ただし、ホストからしかアクセスできない。といっても外部へのアクセスは可能なので、公開しないのはブリッジでいいかも。公開したいのだけmvl使えばいい。
+ip l set enp1s0 promisc on
+
+lxc profile copy default mvlprof
+lxc profile edit mvlprof
+```
+config: {}
+description: MAC_VLAN profile
+devices:
+  eth0:
+    name: eth0
+    nictype: macvlan
+    parent: enp1s0
+    type: nic
+  root:
+    path: /
+    pool: default
+    type: disk
+name: mvlprof
+```
+lxc launch -p mvlprof ubuntu:f f1
+lxc exec f1 -- sed -i "s/dhcp4: false/dhcp4: true/g" /etc/netplan/50-*
+lxc restart f1
+lxc exec f1 -- ssh-import-id-gh yassi-github
+
+for i in {poulenc,messiaen,boulez{0,1},chausson1};do echo lxc launch -p mvlprof ubuntu:f $i;done
+lxc restart container
+lxc info test | grep -v inet6 | tee >(awk '$1=="eth0:"{print $3}') >(awk '$1=="Name:"{print $2}') >/dev/null
+lxc exec container -- ip a | awk '$1=="inet"{print $2}'
+
+// 引数に指定したコンテナのipアドレスを取得
+#!/bin/bash
+container=$1
+echo $container
+lxc exec $container -- ip a | awk '$1=="inet"{print $2}' | grep -v 127.0.0.1
+
+// 全コンテナ名を取得
+lxc list | awk 'NR>3{print $2}' | grep -v '^$'
+
+// dnsmasq leases
+/var/snap/lxd/common/lxd/networks/lxdbr0/dnsmasq.leases
+or
+lxc network list-leases
+
+// ブリッジに鍵登録
+cat ~/.ssh/id_ed25519.pub | xargs -i% lxc exec container -- bash -c 'echo % >> /root/.ssh/authorized_keys'
+
+// 外部からgangutを中継してコンテナに接続
+ssh -t gangut ssh root@10.168.3.161
+
+// set ip range
+lxc config set lxdbr0 ipv4.dhcp.ranges 10.154.195.10-10.154.195.10.20,10.154.195.110-10.154.195.10.120

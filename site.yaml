@@ -13,3 +13,10 @@
   roles:
     - role: virtualbox
     - role: vagrant
+    - role: lxd
+
+# - hosts: test
+#   become: yes
+#   become_method: sudo
+#   roles:
+#     - role: lxd

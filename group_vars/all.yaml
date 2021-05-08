@@ -16,7 +16,7 @@ ansible_become_pass: !vault |
           3939666564353638660a323364393662333461623164653737636162316261653663623566386261
           3664
 
-main_unix_username: "ys"
+main_username: "ys"
 
 gitconfig:
   username: "yassi-github"
@@ -30,4 +30,4 @@ gitconfig:
   editor: "vim"
 
 nameserver_primary: "1.1.1.1"
-nameserver_primary: "1.0.0.1"
+nameserver_secondary: "1.0.0.1"
