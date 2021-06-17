@@ -39,7 +39,7 @@
     marker: "### {mark} Domain names (used by dnsmasq) ###"
     block: "{{ ip_dn_list }}"
     backup: yes
+  notify: dnsmasq_message
 
 # - name: "notify message"
 #   shell: ":"
-#   notify: dnsmasq_message
