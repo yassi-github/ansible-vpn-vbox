@@ -16,6 +16,15 @@
     state: link
     src: /run/systemd/resolve/resolv.conf
     dest: /etc/resolv.conf
+  ignore_errors: yes
+  register: etc_resolvconf
+
+- name: "try linking resolv.conf from /etc/systemd/resolved"
+  file:
+    state: link
+    src: /etc/systemd/resolved.conf
+    dest: "{{ etc_resolvconf.path }}"
+  when: etc_resolvconf.failed == True
 
 - name: "stop systemd-resolved"
   systemd:
@@ -31,6 +40,6 @@
     block: "{{ ip_dn_list }}"
     backup: yes
 
-- name: "notify message"
-  shell: ":"
-  notify: dnsmasq_message
+# - name: "notify message"
+#   shell: ":"
+#   notify: dnsmasq_message

@@ -10,7 +10,12 @@ ip_dn_list: |
   192.168.12.60 gangut.{{ localdomain }}
   192.168.12.160 vagrant-lamp.{{ localdomain }}
   192.168.12.161 vagrant-java.{{ localdomain }}
-  192.168.12.170 vagrant-test.{{ localdomain }}
+  192.168.12.162 vagrant-exp-py.{{ localdomain }}
+
+  192.168.12.131 vagrant-akatsuki.{{ localdomain }}
+  192.168.12.132 vagrant-hibiki.{{ localdomain }}
+  192.168.12.133 vagrant-ikazuchi.{{ localdomain }}
+  192.168.12.134 vagrant-inazuma.{{ localdomain }}
 
   10.168.3.80 boulez0.lxd
   10.168.3.81 boulez1.lxd

@@ -3,20 +3,14 @@
   become: yes
   become_method: sudo
   roles:
-    - role: git
-    - role: softether
+    # - role: git
+    # - role: softether
     - role: dnsmasq
 
-- hosts: slave
-  become: yes
-  become_method: sudo
-  roles:
-    - role: virtualbox
-    - role: vagrant
-    - role: lxd
-
-# - hosts: test
+# - hosts: slave
 #   become: yes
 #   become_method: sudo
 #   roles:
+#     - role: virtualbox
+#     - role: vagrant
 #     - role: lxd
