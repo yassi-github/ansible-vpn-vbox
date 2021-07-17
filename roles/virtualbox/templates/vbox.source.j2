@@ -2,9 +2,5 @@ Types: deb
 URIs: {{ virtualbox_repository_uri }}
 Suites: {{ ansible_facts.distribution_release }}
 Components: contrib
-{% if virtualbox_repository_key_extention_type == 'gpg' %}
-Signed-By: {{ repository_keys_path }}/{{ virtualbox_repository_key_name }}
-{% else %}
 Signed-By: {{ repository_keys_path }}/{{ virtualbox_repository_key_name }}.gpg
-{% endif %}
 Architectures: {{ cpu_architecture }}

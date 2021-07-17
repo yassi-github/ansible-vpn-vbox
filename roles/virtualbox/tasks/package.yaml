@@ -7,11 +7,7 @@
     update_cache: yes
 
 - name: "add virtualbox repository key"
-  script: shellscript/apt-key-add.sh {{ virtualbox_repository_key_uri }} {{ virtualbox_repository_key_name }}
-
-- name: "add extension .gpg because it's not a gpg key"
-  shell: "mv {{ repository_keys_path }}/{{ virtualbox_repository_key_name }} {{ repository_keys_path }}/{{ virtualbox_repository_key_name }}.gpg"
-  when: virtualbox_repository_key_extention_type != 'gpg'
+  script: shellscript/apt-key-add.sh {{ virtualbox_repository_key_uri }} {{ virtualbox_repository_key_name }}.gpg
 
 - name: "add repository source file"
   template:

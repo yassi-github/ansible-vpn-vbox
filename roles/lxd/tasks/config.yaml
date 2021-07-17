@@ -23,19 +23,27 @@
 
 - name: "import macvlanprofile"
   shell: lxc profile create mvlprof && cat {{ lxd_prof_dir }}/mvlprof.profile | lxc profile edit mvlprof
+# "Error: Error inserting \"mvlprof\" into database: The profile already exists"
+  ignore_errors: yes
+
+- name: "ensure existing user-crontab file"
+  file:
+    path: "{{ crontab_dir }}/{{ main_username }}"
+    state: touch
 
 - name: "check lxd is running per boot by cron"
-  copy:
-    src: mycrontabs
-    dest: "{{ crontab_dir }}/{{ main_username }}"
+  blockinfile:
+    block: |
+      @reboot lxc list &>/dev/null
+    path: "{{ crontab_dir }}/{{ main_username }}"
     backup: yes
 
-- name: "locate lxc build scripts"
-  copy:
-    src: lxcs
-    dest: "{{ lxd_prof_dir }}"
+# - name: "locate lxc build scripts"
+#   copy:
+#     src: lxcs
+#     dest: "{{ lxd_prof_dir }}"
 
-- name: "locate lxc memo"
-  copy:
-    src: dirty_memo.txt
-    dest: "{{ lxd_prof_dir }}/dirty_memo.txt"
+# - name: "locate lxc memo"
+#   copy:
+#     src: dirty_memo.txt
+#     dest: "{{ lxd_prof_dir }}/dirty_memo.txt"

@@ -20,3 +20,6 @@ ip_dn_list: |
 
 
 dnsmasq_resolvconf_path: "/etc/resolv-dnsmasq.conf"
+
+nameserver_primary: "1.1.1.1"
+nameserver_secondary: "1.0.0.1"

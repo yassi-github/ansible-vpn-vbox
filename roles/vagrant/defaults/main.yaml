@@ -1,6 +1,5 @@
 ---
-hashicorp_repository_key_extention_type: "gpg"
-hashicorp_repository_key_name: "hashicorp.{{ hashicorp_repository_key_extention_type }}"
+hashicorp_repository_key_name: "hashicorp"
 hashicorp_repository_key_uri: "https://apt.releases.hashicorp.com/gpg"
 hashicorp_repository_uri: "https://apt.releases.hashicorp.com"
 

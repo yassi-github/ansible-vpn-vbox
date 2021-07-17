@@ -1,3 +1,5 @@
 ---
 lxd_prof_dir: "/usr/local/lxd"
 crontab_dir: "/var/spool/cron/crontabs"
+# 有線LAN
+lxd_host_eth_name: "enp1s0"

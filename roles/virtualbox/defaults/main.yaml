@@ -1,8 +1,7 @@
 ---
 virtualbox_package_version: "6.1"
 
-virtualbox_repository_key_extention_type: "asc"
-virtualbox_repository_key_name: "oracle_vbox_2016.{{ virtualbox_repository_key_extention_type }}"
+virtualbox_repository_key_name: "oracle_vbox_2016.asc"
 virtualbox_repository_key_uri: "https://www.virtualbox.org/download/oracle_vbox_2016.asc"
 virtualbox_repository_uri: "https://download.virtualbox.org/virtualbox/debian"
 
@@ -12,7 +11,7 @@ virtualbox_message: "
 Before use Virtualbox or Vagrant,\n
 try this:\n
 \n
-$ VboxManage list vms\n
+$ VBoxManage list vms\n
 \n
 maybe needs more configure...\n
 "
