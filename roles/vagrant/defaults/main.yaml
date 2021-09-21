@@ -4,3 +4,20 @@ hashicorp_repository_key_uri: "https://apt.releases.hashicorp.com/gpg"
 hashicorp_repository_uri: "https://apt.releases.hashicorp.com"
 
 pin_priority: 100
+
+vmhomedir: /home/{{ ansible_user }}/vms
+
+system_list:
+  - "dnsmasq"
+
+div6_list:
+  - "akatsuki"
+  - "hibiki"
+  - "ikazuchi"
+  - "inazuma"
+
+boximage: "bento/ubuntu-20.04"
+# boximage: "bento/amazonlinux-2"
+bridge_device: wlp2s0
+
+vmbaseip: "192.168.12.13"

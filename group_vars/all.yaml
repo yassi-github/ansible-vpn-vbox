@@ -4,16 +4,6 @@ repository_sources_path: "/etc/apt/sources.list.d"
 repository_preferences_path: "/etc/apt/preferences.d/"
 cpu_architecture: "amd64"
 
-ansible_user: ys
-ansible_password: !vault |
-          $ANSIBLE_VAULT;1.1;AES256
-          61353939613938356165633934383131303937343439323730303463623862623435313461616436
-          3564363934373731623363376533303562346430376539610a366562303137346639643863666336
-          33376638333136303366313535343461396531663438623562623433316138633039336135613465
-          3939666564353638660a323364393662333461623164653737636162316261653663623566386261
-          3664
-ansible_become_pass: "{{ ansible_password }}"
-main_username: "ys"
-
 ansible_python_interpreter: /usr/bin/python3
 
+github_username: yassi-github

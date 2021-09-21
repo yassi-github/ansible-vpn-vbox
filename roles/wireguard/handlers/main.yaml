@@ -1,0 +1,9 @@
+---
+- name: loadsysctl
+  shell: sysctl --load=/etc/sysctl.d/99-sysctl.conf
+
+- name: start_wireguard
+  shell: wg-quick up wg0
+
+- name: stop_wireguard
+  shell: wg-quick down wg0

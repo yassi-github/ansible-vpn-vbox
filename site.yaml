@@ -1,12 +1,14 @@
 ---
-- hosts: master
+# - hosts: master
+#   roles:
+#     - role: virtualbox
+#     - role: vagrant
+#     - role: lxd
+
+- hosts: dnsserver
   roles:
-    - role: git
-    - role: softether
     - role: dnsmasq
 
-- hosts: slave
-  roles:
-    - role: virtualbox
-    - role: vagrant
-    - role: lxd
+# - hosts: vpnserver
+#   roles:
+#     - role: "softether-arch"

@@ -1,0 +1,5 @@
+---
+- name: "reserve message"
+  command: echo "reserved message!"
+  notify: "Message!"
+

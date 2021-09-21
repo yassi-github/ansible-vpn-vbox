@@ -1,0 +1,24 @@
+---
+- name: create vm dir
+  file:
+    state: directory
+    path: "{{ vmhomedir }}"
+
+- name: create vm/div6 dir
+  file:
+    state: directory
+    path: "{{ vmhomedir }}/div6/{{ item }}"
+  loop: "{{ div6_list }}"
+
+- name: create vm/system dir
+  file:
+    state: directory
+    path: "{{ vmhomedir }}/system"
+
+- name: set vagrantfile
+  template:
+    src: vagrantfile.j2
+    dest: "{{ vmhomedir }}/div6/{{ item }}/Vagrantfile"
+  loop: "{{ div6_list }}"
+  loop_control:
+    index_var: idx

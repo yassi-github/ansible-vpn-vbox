@@ -4,6 +4,3 @@
 
 - name: config.yaml
   include_tasks: config.yaml
-
-- name: directory.yaml
-  include_tasks: directory.yaml

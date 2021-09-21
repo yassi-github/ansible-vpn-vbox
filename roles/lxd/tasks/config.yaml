@@ -28,14 +28,14 @@
 
 - name: "ensure existing user-crontab file"
   file:
-    path: "{{ crontab_dir }}/{{ main_username }}"
+    path: "{{ crontab_dir }}/{{ ansible_user }}"
     state: touch
 
 - name: "check lxd is running per boot by cron"
   blockinfile:
     block: |
       @reboot lxc list &>/dev/null
-    path: "{{ crontab_dir }}/{{ main_username }}"
+    path: "{{ crontab_dir }}/{{ ansible_user }}"
     backup: yes
 
 # - name: "locate lxc build scripts"

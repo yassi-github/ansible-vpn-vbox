@@ -1,0 +1,13 @@
+---
+- name: install some tools and wireguard
+  # pacman:
+  apt:
+    update_cache: yes
+    name:
+      - "vim"
+      - "tmux"
+      # pacman
+      # - "wireguard-tools"
+      # apt
+      - "wireguard"
+    state: present

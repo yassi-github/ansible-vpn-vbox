@@ -1,0 +1,27 @@
+---
+message: |
+  Install Completed!
+
+  Before start vpnserver, modify Vagrantfile and reload this.
+  Uncommentout vb.customize nicpromisc row.
+  And execute: vagrant reload
+
+  Then, Let's start vpnserver!
+
+  # vpnserver start
+  # vpncmd
+  try below to test all ok:
+  > 3
+  > check
+
+  setting server:
+  > 1
+  > serverp
+  (set server password)
+
+  For Now, try connect from client.
+
+  If you won't use JSON-RPC API, modify `vpn_server.config`(where?):
+  `bool DisableJsonRpcWebApi` to `true`
+
+  it could be done by softether-client(gui). else?
