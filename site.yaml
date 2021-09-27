@@ -1,14 +1,14 @@
 ---
 # - hosts: master
 #   roles:
-#     - role: virtualbox
-#     - role: vagrant
-#     - role: lxd
+#     - role: gangut-config
+    # - role: vagrant
+    # - role: lxd
 
-- hosts: dnsserver
-  roles:
-    - role: dnsmasq
-
-# - hosts: vpnserver
+# - hosts: dnsserver
 #   roles:
-#     - role: "softether-arch"
+#     - role: dnsmasq
+
+- hosts: vpnserver
+  roles:
+    - role: "softether-arch"

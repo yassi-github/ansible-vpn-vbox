@@ -14,10 +14,10 @@
     src: vbox.source.j2
     dest: "{{ repository_sources_path }}/vbox.sources"
 
-- name: "add repository preference file"
-  template:
-    src: vbox.pref.j2
-    dest: "{{ repository_preferences_path }}/vbox.pref"
+# - name: "add repository preference file"
+#   template:
+#     src: vbox.pref.j2
+#     dest: "{{ repository_preferences_path }}/vbox.pref"
 
 - name: "update repository cache"
   apt:

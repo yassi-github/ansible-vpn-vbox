@@ -1,18 +1,13 @@
 ---
-- name: install depends
-  pacman:
-    name:
-      - "base-devel"
+- name: check yay installed
+  stat:
+    path: /usr/bin/yay
+  register: yay_installed_stat
 
-- name: dl yay
-  shell: cd /opt && git clone https://aur.archlinux.org/yay.git 
+- name: package.yaml
+  include_tasks: package.yaml
+  when: yay_installed_stat.stat.exists == False
 
-- name: chown
-  file:
-    path: /opt/yay
-    owner: "{{ ansible_user }}"
-    recurse: yes
-
-- name: install yay
-  shell: cd /opt/yay && makepkg -si
+- name: update and upgrade
+  shell: yes | yay -Syu
   become: no

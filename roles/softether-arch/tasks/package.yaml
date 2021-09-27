@@ -1,3 +1,10 @@
 ---
+- name: check yay installed
+  stat:
+    path: /usr/bin/vpnserver
+  register: vpnserver_installed_stat
+
 - name: install softether
-  shell: yay -S softethervpn
+  shell: yes | yay -S softethervpn
+  become: no
+  when: vpnserver_installed_stat.stat.exists == False

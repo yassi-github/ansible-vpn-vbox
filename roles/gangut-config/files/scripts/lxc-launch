@@ -1,0 +1,40 @@
+#!/bin/bash
+
+if [ $# = 0 ];then
+    randName=`openssl rand 5 | base64 | tr -d [=+/0-9]`
+    name=${randName,}
+else
+    name=$1
+fi
+
+lxc launch ubuntu:f -p mvlprof $name
+
+githubName='yassi-github'
+
+executable='False'
+
+while [[ $executable != 'True' ]];do
+    ipAddr=`lxc exec $name -- ip a | grep -v 127.0.0.1 | grep 'inet ' | tr -s ' ' |cut -d' ' -f 3`
+    if [[ $ipAddr =~ [0-9]+\.[0-9]+\.[0-9]+\.[0-9]+ ]];then
+        executable='True'
+    fi
+    echo -n '.'
+    sleep .5
+done
+
+echo
+
+#haveAddress=False
+
+#while [[ $haveAddress != 'True' ]];do
+#    ipAddr=`lxc list | grep $name | tr -s ' ' | cut -d' ' -f 6`
+#    if [[ $ipAddr != '|' ]];then
+#        executable='True'
+#    fi
+#    echo -n '.'
+#    sleep .5
+#done
+
+#echo
+
+lxc exec $name -- ssh-import-id-gh $githubName

@@ -1,4 +1,6 @@
 ---
+# ddns_secretkey: 
+
 message: |
   Install Completed!
 
@@ -19,9 +21,4 @@ message: |
   > serverp
   (set server password)
 
-  For Now, try connect from client.
-
-  If you won't use JSON-RPC API, modify `vpn_server.config`(where?):
-  `bool DisableJsonRpcWebApi` to `true`
-
-  it could be done by softether-client(gui). else?
+  For Now, try connect from server manager.

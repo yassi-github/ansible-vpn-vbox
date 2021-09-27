@@ -1,5 +1,27 @@
 ---
+- name: copy config
+  copy:
+    src: vpn_server.config
+    dest: /usr/lib/softethervpn/vpnserver/vpn_server.config
+    mode: '0600'
+
+# - name: disable webrpc function
+#   replace:
+#     path: /usr/lib/softethervpn/vpnserver/vpn_server.config
+#     regexp: '^\s+bool DisableJsonRpcWebApi false'
+#     replace: '                bool DisableJsonRpcWebApi true'
+#   notify: "restart vpnserver"
+
+# - name: change ddns byte key
+#   replace:
+#     path: /usr/lib/softethervpn/vpnserver/vpn_server.config
+#     regexp: '^\s+byte Key .+'
+#     replace: "                byte Key {{ ddns_secretkey }}"
+#   notify: "restart vpnserver"
+  
+# - name: remove CR
+#   shell: sed -i "s/"$(echo -e \u0d)"//g" /usr/lib/softethervpn/vpnserver/vpn_server.config
+
 - name: "reserve message"
   command: echo "reserved message!"
   notify: "Message!"
-

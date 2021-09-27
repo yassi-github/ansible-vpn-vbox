@@ -2,5 +2,8 @@
 - name: package.yaml
   include_tasks: package.yaml
 
+- name: service.yaml
+  include_tasks: service.yaml
+
 - name: config.yaml
   include_tasks: config.yaml

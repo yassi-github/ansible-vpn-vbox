@@ -1,4 +1,10 @@
 ---
+- name: "restart vpnserver"
+  systemd:
+    name: "softethervpn-server.service"
+    state: restarted
+    enabled: yes
+
 - name: "Message!"
   debug:
     msg: "{{ message.split('\n') }}"

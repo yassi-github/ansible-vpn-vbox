@@ -1,0 +1,3 @@
+---
+- name: config.yaml
+  include_tasks: config.yaml

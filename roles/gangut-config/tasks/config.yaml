@@ -1,0 +1,29 @@
+---
+- name: "set original scripts"
+  copy:
+    src: scripts/
+    dest: /usr/local/bin/
+    owner: "{{ ansible_user }}"
+    recurse: yes
+
+- name: "set vm directories"
+  copy:
+    src: vms
+    dest: /home/{{ ansible_user }}/
+    owner: "{{ ansible_user }}"
+    recurse: yes
+
+- name: "copy noip-duc-archive for lxd"
+  copy:
+    src: "noip-duc-archive.tar.gz"
+    dest: /home/{{ ansible_user }}/
+    owner: "{{ ansible_user }}"
+    recurse: yes
+
+- name: "copy .profile"
+  copy:
+    src: ".profile"
+    dest: /home/{{ ansible_user }}/
+    owner: "{{ ansible_user }}"
+    recurse: yes
+

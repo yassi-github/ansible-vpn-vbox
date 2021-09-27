@@ -1,0 +1,6 @@
+---
+- name: start softethervpn-server
+  systemd:
+    name: "softethervpn-server.service"
+    state: restarted
+    enabled: yes

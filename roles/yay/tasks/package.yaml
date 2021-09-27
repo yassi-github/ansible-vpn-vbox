@@ -1,0 +1,20 @@
+---
+- name: install depends
+  pacman:
+    update_cache: yes
+    name:
+      - "base-devel"
+      - git
+
+- name: dl yay
+  shell: cd /opt && git clone https://aur.archlinux.org/yay.git 
+
+- name: chown
+  file:
+    path: /opt/yay
+    owner: "{{ ansible_user }}"
+    recurse: yes
+
+- name: install yay
+  shell: cd /opt/yay && yes | makepkg -si
+  become: no

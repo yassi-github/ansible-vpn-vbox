@@ -14,10 +14,10 @@
     src: hashicorp.source.j2
     dest: "{{ repository_sources_path }}/hashicorp.sources"
 
-- name: "add repository preference file"
-  template:
-    src: hashicorp.pref.j2
-    dest: "{{ repository_preferences_path }}/hashicorp.pref"
+# - name: "add repository preference file"
+#   template:
+#     src: hashicorp.pref.j2
+#     dest: "{{ repository_preferences_path }}/hashicorp.pref"
 
 - name: "update repository cache"
   apt:

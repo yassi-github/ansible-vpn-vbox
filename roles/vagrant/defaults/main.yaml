@@ -3,7 +3,7 @@ hashicorp_repository_key_name: "hashicorp"
 hashicorp_repository_key_uri: "https://apt.releases.hashicorp.com/gpg"
 hashicorp_repository_uri: "https://apt.releases.hashicorp.com"
 
-pin_priority: 100
+hashicorp_pin_priority: 100
 
 vmhomedir: /home/{{ ansible_user }}/vms
 
