@@ -9,6 +9,6 @@
 #   roles:
 #     - role: dnsmasq
 
-- hosts: vpnserver
-  roles:
-    - role: "softether-arch"
+# - hosts: vpnserver
+#   roles:
+#     - role: "softether-arch"
