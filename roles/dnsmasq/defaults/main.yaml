@@ -6,10 +6,11 @@ dnsmasq_msg: |
   white down to /etc/hosts
 
 ip_dn_list: |
+  192.168.12.40 ek-31.{{ localdomain }}
   192.168.12.50 tashkent.{{ localdomain }}
   192.168.12.60 gangut.{{ localdomain }}
-  192.168.12.70 verniy.{{ localdomain }}
-  192.168.12.160 vagrant-dnsmasq.{{ localdomain }}
+  192.168.12.70 danyang.{{ localdomain }}
+  192.168.12.160 dnsmasq.{{ localdomain }}
 
   192.168.12.131 vagrant-akatsuki.{{ localdomain }}
   192.168.12.132 vagrant-hibiki.{{ localdomain }}
