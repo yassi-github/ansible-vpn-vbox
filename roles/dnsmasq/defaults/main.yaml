@@ -8,14 +8,9 @@ dnsmasq_msg: |
 ip_dn_list: |
   192.168.12.40 ek-31.{{ localdomain }}
   192.168.12.50 tashkent.{{ localdomain }}
-  192.168.12.60 gangut.{{ localdomain }}
+  192.168.12.60 bastion.{{ localdomain }}
   192.168.12.70 danyang.{{ localdomain }}
-  192.168.12.160 dnsmasq.{{ localdomain }}
-
-  192.168.12.131 vagrant-akatsuki.{{ localdomain }}
-  192.168.12.132 vagrant-hibiki.{{ localdomain }}
-  192.168.12.133 vagrant-ikazuchi.{{ localdomain }}
-  192.168.12.134 vagrant-inazuma.{{ localdomain }}
+  192.168.12.160 dns.{{ localdomain }}
 
 
 dnsmasq_resolvconf_path: "/etc/resolv-dnsmasq.conf"

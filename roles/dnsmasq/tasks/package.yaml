@@ -2,4 +2,4 @@
 - name: "install dnsmasq"
   apt:
     name: dnsmasq
-  # ignore_errors: yes
+    update_cache: yes
